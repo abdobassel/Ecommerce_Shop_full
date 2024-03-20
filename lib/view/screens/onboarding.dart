@@ -1,7 +1,11 @@
+import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
+import 'package:ecommerce_flutter/core/services/services.dart';
 import 'package:ecommerce_flutter/data/datasource/static/static.dart';
 import 'package:ecommerce_flutter/main.dart';
+import 'package:ecommerce_flutter/view/screens/auth/loginscreen.dart';
 import 'package:ecommerce_flutter/view/widgets/controller_boarding.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -14,7 +18,15 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   var pageController = PageController();
+  late MyServices myServices;
   bool isLastPage = false;
+  @override
+  void initState() {
+    super.initState();
+    // استخدام الـ Get.find() للحصول على مثيل MyServices المهيأ مسبقًا
+    myServices = Get.find();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +35,9 @@ class _OnBoardingState extends State<OnBoarding> {
               onPressed: () async {
                 print('save cache and navigator true');
 
-                shared.setBool('onboard', true);
+                Get.offAllNamed(AppRoutes.login);
+
+                myServices.sharedPreferences.setBool('onboard', true);
               },
               child: Text('Skip'))
         ]),
@@ -97,6 +111,8 @@ class _OnBoardingState extends State<OnBoarding> {
                   onPressed: () {
                     if (isLastPage) {
                       print('LAst and navigator');
+                      Get.offAllNamed(AppRoutes.login);
+                      myServices.sharedPreferences.setBool('onboard', true);
                     } else {
                       pageController.nextPage(
                           duration: Duration(milliseconds: 600),
