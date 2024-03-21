@@ -20,7 +20,7 @@ class SignupControllerImplements extends SignupController {
 
   @override
   signup() {
-    // TODO: implement signup
+    Get.offNamed(AppRoutes.verfycode_signup);
     throw UnimplementedError();
   }
 

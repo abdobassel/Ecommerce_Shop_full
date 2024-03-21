@@ -172,9 +172,11 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 conditionBuilder: (context) => true,
                 widgetBuilder: (context) => DefaultButton(
-                    text: 'Create Account',
+                    text: 'Sign Up',
                     isUperCase: false,
-                    function: () {},
+                    function: () {
+                      signupController.signup();
+                    },
                     background: AppColor.gry,
                     radius: 30),
               ),

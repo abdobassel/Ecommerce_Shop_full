@@ -4,6 +4,7 @@ import 'package:ecommerce_flutter/view/screens/auth/register_page.dart';
 import 'package:ecommerce_flutter/view/screens/auth/resetPassword.dart';
 import 'package:ecommerce_flutter/view/screens/auth/success_reset.dart';
 import 'package:ecommerce_flutter/view/screens/auth/success_signup.dart';
+import 'package:ecommerce_flutter/view/screens/auth/verfycode_signup.dart';
 import 'package:ecommerce_flutter/view/screens/auth/verifycode.dart';
 import 'package:ecommerce_flutter/view/screens/home/home_screen.dart';
 import 'package:ecommerce_flutter/view/screens/language/languagescreen.dart';
@@ -25,6 +26,7 @@ class AppRoutes {
   static const String success_reset = '/succes_reset';
 
   static const String success_signup = '/succes_signup';
+  static const String verfycode_signup = '/veryficode_signup';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -41,4 +43,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.success_reset: (context) => SuccessResetPassword(),
 
   AppRoutes.success_signup: (context) => Success_Signup(),
+  AppRoutes.verfycode_signup: (context) => VerfyCodeSignup(),
 };

@@ -8,6 +8,7 @@ import 'package:ecommerce_flutter/view/screens/auth/register_page.dart';
 import 'package:ecommerce_flutter/view/screens/auth/resetPassword.dart';
 import 'package:ecommerce_flutter/view/screens/auth/success_reset.dart';
 import 'package:ecommerce_flutter/view/screens/auth/success_signup.dart';
+import 'package:ecommerce_flutter/view/screens/auth/verfycode_signup.dart';
 import 'package:ecommerce_flutter/view/screens/auth/verifycode.dart';
 import 'package:ecommerce_flutter/view/screens/home/home_screen.dart';
 import 'package:ecommerce_flutter/view/screens/language/languagescreen.dart';
@@ -59,6 +60,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: AppRoutes.success_reset, page: () => SuccessResetPassword()),
         GetPage(name: AppRoutes.success_signup, page: () => Success_Signup()),
+        GetPage(
+            name: AppRoutes.verfycode_signup, page: () => VerfyCodeSignup()),
       ],
     );
   }
