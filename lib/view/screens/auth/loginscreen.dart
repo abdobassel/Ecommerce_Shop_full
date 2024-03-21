@@ -15,9 +15,12 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginControllerImplements loginControllerImplements =
         Get.put(LoginControllerImplements());
+
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('login'.tr),
+        scrolledUnderElevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -38,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                         }
                       },
                       controller: loginControllerImplements.emailControler,
-                      labeltext: 'Email',
+                      labeltext: 'email'.tr,
                       type: TextInputType.emailAddress),
                   const SizedBox(
                     height: 25,
@@ -56,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                       sufxBtn: 'view Hide',
                       showPassfunc: () {},
                       controller: loginControllerImplements.passControler,
-                      labeltext: 'Password',
+                      labeltext: 'password'.tr,
                       type: TextInputType.visiblePassword),
                   const SizedBox(
                     height: 40,
@@ -70,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     conditionBuilder: (context) => true,
                     widgetBuilder: (context) => DefaultButton(
-                        text: 'Log in',
+                        text: 'login'.tr,
                         isUperCase: false,
                         function: () {},
                         background: AppColor.primary,
@@ -78,6 +81,21 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: 14,
+                  ),
+                  InkWell(
+                    splashColor: AppColor.gry,
+                    onTap: () {
+                      loginControllerImplements.toForgetPassword();
+                    },
+                    child: Text('forgetpass'.tr,
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 33, 31, 51),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300)),
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   Center(
                     child: InkWell(
@@ -93,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   const SeparatedWidgetDeviderAndText(),
                   const SizedBox(

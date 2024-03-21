@@ -2,8 +2,14 @@ import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
 import 'package:ecommerce_flutter/core/localization/change_local.dart';
 import 'package:ecommerce_flutter/core/localization/translation.dart';
 import 'package:ecommerce_flutter/core/services/services.dart';
+import 'package:ecommerce_flutter/view/screens/auth/forget_password.dart';
 import 'package:ecommerce_flutter/view/screens/auth/loginscreen.dart';
 import 'package:ecommerce_flutter/view/screens/auth/register_page.dart';
+import 'package:ecommerce_flutter/view/screens/auth/resetPassword.dart';
+import 'package:ecommerce_flutter/view/screens/auth/success_reset.dart';
+import 'package:ecommerce_flutter/view/screens/auth/success_signup.dart';
+import 'package:ecommerce_flutter/view/screens/auth/verifycode.dart';
+import 'package:ecommerce_flutter/view/screens/home/home_screen.dart';
 import 'package:ecommerce_flutter/view/screens/language/languagescreen.dart';
 import 'package:ecommerce_flutter/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
@@ -47,21 +53,13 @@ class MyApp extends StatelessWidget {
         GetPage(name: AppRoutes.login, page: () => LoginScreen()),
         GetPage(name: AppRoutes.signup, page: () => RegisterScreen()),
         GetPage(name: AppRoutes.home, page: () => MyHomePage()),
+        GetPage(name: AppRoutes.forgetPassword, page: () => ForgetPassword()),
+        GetPage(name: AppRoutes.verfiyCode, page: () => VeryfiCode()),
+        GetPage(name: AppRoutes.resetPassword, page: () => ResetPassword()),
+        GetPage(
+            name: AppRoutes.success_reset, page: () => SuccessResetPassword()),
+        GetPage(name: AppRoutes.success_signup, page: () => Success_Signup()),
       ],
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-      ),
-      body: Center(child: Text('Heeloooo')),
     );
   }
 }

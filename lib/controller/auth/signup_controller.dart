@@ -16,7 +16,7 @@ class SignupControllerImplements extends SignupController {
 
   late TextEditingController nameControler;
   late TextEditingController phoneController;
-  late GlobalKey<FormState> formKeySignup;
+  late GlobalKey<FormState> formKeySignup = GlobalKey();
 
   @override
   signup() {
@@ -26,12 +26,12 @@ class SignupControllerImplements extends SignupController {
 
   @override
   tohome() {
-    Get.offAndToNamed(AppRoutes.home);
+    Get.offAllNamed(AppRoutes.home);
   }
 
   @override
   toSignin() {
-    Get.offAndToNamed(AppRoutes.login);
+    Get.offNamed(AppRoutes.login);
   }
 
   @override
@@ -40,7 +40,7 @@ class SignupControllerImplements extends SignupController {
     passControler = TextEditingController();
     nameControler = TextEditingController();
     phoneController = TextEditingController();
-    formKeySignup = GlobalKey();
+
     super.onInit();
   }
 
