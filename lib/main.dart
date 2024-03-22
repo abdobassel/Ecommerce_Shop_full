@@ -1,24 +1,15 @@
 import 'package:ecommerce_flutter/core/class/binding.dart';
 import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
+import 'package:ecommerce_flutter/core/functions/check_internet.dart';
 import 'package:ecommerce_flutter/core/localization/change_local.dart';
 import 'package:ecommerce_flutter/core/localization/translation.dart';
 import 'package:ecommerce_flutter/core/services/services.dart';
-import 'package:ecommerce_flutter/view/screens/auth/forget_password.dart';
-import 'package:ecommerce_flutter/view/screens/auth/loginscreen.dart';
-import 'package:ecommerce_flutter/view/screens/auth/register_page.dart';
-import 'package:ecommerce_flutter/view/screens/auth/resetPassword.dart';
-import 'package:ecommerce_flutter/view/screens/auth/success_reset.dart';
-import 'package:ecommerce_flutter/view/screens/auth/success_signup.dart';
-import 'package:ecommerce_flutter/view/screens/auth/verfycode_signup.dart';
-import 'package:ecommerce_flutter/view/screens/auth/verifycode.dart';
-import 'package:ecommerce_flutter/view/screens/home/home_screen.dart';
-import 'package:ecommerce_flutter/view/screens/language/languagescreen.dart';
-import 'package:ecommerce_flutter/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await checkInternet(); //print true if internet works
   await initialServices();
 
   MyServices myServices =
