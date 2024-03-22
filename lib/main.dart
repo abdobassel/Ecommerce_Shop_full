@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/core/class/binding.dart';
 import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
 import 'package:ecommerce_flutter/core/localization/change_local.dart';
 import 'package:ecommerce_flutter/core/localization/translation.dart';
@@ -40,29 +41,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocaleController localeController = Get.put(LocaleController());
     return GetMaterialApp(
-      routes: routes,
+      //  routes: routes,
       translations: MyTranslations(),
       locale: localeController.language,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "cairo",
       ),
-      initialRoute: submit ? AppRoutes.languagescreen : AppRoutes.onboarding,
-      getPages: [
-        GetPage(name: AppRoutes.languagescreen, page: () => LanguageScreen()),
-        GetPage(name: AppRoutes.onboarding, page: () => OnBoarding()),
-        GetPage(name: AppRoutes.login, page: () => LoginScreen()),
-        GetPage(name: AppRoutes.signup, page: () => RegisterScreen()),
-        GetPage(name: AppRoutes.home, page: () => MyHomePage()),
-        GetPage(name: AppRoutes.forgetPassword, page: () => ForgetPassword()),
-        GetPage(name: AppRoutes.verfiyCode, page: () => VeryfiCode()),
-        GetPage(name: AppRoutes.resetPassword, page: () => ResetPassword()),
-        GetPage(
-            name: AppRoutes.success_reset, page: () => SuccessResetPassword()),
-        GetPage(name: AppRoutes.success_signup, page: () => Success_Signup()),
-        GetPage(
-            name: AppRoutes.verfycode_signup, page: () => VerfyCodeSignup()),
-      ],
+      initialBinding: MyBinding(), // lazyput controllers
+      getPages: getPages,
     );
   }
 }

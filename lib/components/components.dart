@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
@@ -126,7 +127,7 @@ Widget DefaultTextForm({
       keyboardType: type,
       decoration: InputDecoration(
         errorStyle: TextStyle(
-          color: Colors.white,
+          color: AppColor.primary,
         ),
         suffixStyle: const TextStyle(color: Color.fromARGB(255, 39, 17, 17)),
         suffix: TextButton(

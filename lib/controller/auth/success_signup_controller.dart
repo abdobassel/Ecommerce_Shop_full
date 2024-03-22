@@ -9,6 +9,6 @@ class SuccessSignupCtrlImpl extends SuccessSignupController {
   @override
   gotoLogin() {
     // TODO: implement gotoLogin
-    Get.offAllNamed(AppRoutes.login);
+    Get.offNamed(AppRoutes.login);
   }
 }

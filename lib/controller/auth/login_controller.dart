@@ -12,11 +12,16 @@ abstract class LoginController extends GetxController {
 class LoginControllerImplements extends LoginController {
   late TextEditingController emailControler;
   late TextEditingController passControler;
-  late GlobalKey<FormState> loginFormKey;
-  late LocaleController localeController;
+  late GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   @override
-  login() {}
+  login() {
+    if (loginFormKey.currentState!.validate()) {
+      print('Validate');
+    } else {
+      print('No valid');
+    }
+  }
 
   @override
   toSignup() {
@@ -27,8 +32,7 @@ class LoginControllerImplements extends LoginController {
   void onInit() {
     emailControler = TextEditingController();
     passControler = TextEditingController();
-    loginFormKey = GlobalKey();
-    localeController = Get.put(LocaleController());
+
     super.onInit();
   }
 
