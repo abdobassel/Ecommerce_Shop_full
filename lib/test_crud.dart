@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/core/class/crud.dart';
 import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
+import 'package:ecommerce_flutter/core/functions/handle_response.dart';
 import 'package:get/get.dart';
 
 class TestData {
@@ -18,14 +19,6 @@ class TestData {
       //  print('right $r');
       return r;
     });
-  }
-}
-
-handle(response) {
-  if (response is StatusRequest) {
-    return response;
-  } else {
-    return StatusRequest.success;
   }
 }
 

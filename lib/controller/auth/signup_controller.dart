@@ -1,4 +1,7 @@
+import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
 import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
+import 'package:ecommerce_flutter/core/functions/handle_response.dart';
+import 'package:ecommerce_flutter/data/datasource/remote/auth/signup_data.dart';
 import 'package:ecommerce_flutter/view/screens/auth/loginscreen.dart';
 import 'package:ecommerce_flutter/view/screens/auth/register_page.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +20,36 @@ class SignupControllerImplements extends SignupController {
   late TextEditingController nameControler;
   late TextEditingController phoneController;
   late GlobalKey<FormState> formKeySignup = GlobalKey();
+  // signup data post
+  SignupData signupData = SignupData(Get.find());
+  StatusRequest? statusRequest;
+
+  List data = [];
 
   @override
-  signup() {
-    Get.offNamed(AppRoutes.verfycode_signup);
+  signup() async {
+    if (formKeySignup.currentState!.validate()) {
+      statusRequest = StatusRequest.loading;
+      var response = await signupData.signupPostData(nameControler.text,
+          passControler.text, emailControler.text, phoneController.text);
+      statusRequest = handle(response);
+      if (statusRequest == StatusRequest.success) {
+        if (response['status'] == "success") {
+          data.addAll(
+              response['data']); // save list here for using after if want
+          Get.offNamed(AppRoutes.verfycode_signup);
+        } else {
+          Get.defaultDialog(
+            title: 'Error Signup',
+            middleText: 'Username Or Phone Or email Exists',
+          );
+          statusRequest = StatusRequest.failure;
+        }
+      }
+      update();
+    }
+
+    //Get.offNamed(AppRoutes.verfycode_signup);
   }
 
   @override
