@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/core/middlewares/firstmiddleware.dart';
+import 'package:ecommerce_flutter/test_view.dart';
 import 'package:ecommerce_flutter/view/screens/auth/forget_password.dart';
 import 'package:ecommerce_flutter/view/screens/auth/loginscreen.dart';
 import 'package:ecommerce_flutter/view/screens/auth/register_page.dart';
@@ -28,7 +29,9 @@ class AppRoutes {
   static const String success_reset = '/succes_reset';
 
   static const String success_signup = '/succes_signup';
+
   static const String verfycode_signup = '/veryficode_signup';
+  static const String test = '/test';
 }
 
 // routes => builtin flutter not getx
@@ -67,4 +70,5 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.success_reset, page: () => SuccessResetPassword()),
   GetPage(name: AppRoutes.success_signup, page: () => Success_Signup()),
   GetPage(name: AppRoutes.verfycode_signup, page: () => VerfyCodeSignup()),
+  GetPage(name: AppRoutes.test, page: () => TestV()),
 ];

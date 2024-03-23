@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 
 checkInternet() async {
   try {
-    List result = await InternetAddress.lookup('google.com');
+    var result = await InternetAddress.lookup('google.com');
     if (result.isNotEmpty) {
-      print(true);
+      print('Sucesinternet');
       return true;
     }
-  } on SocketException catch (_) {
+  } on SocketException catch (e) {
+    print('no internet $e');
     return false;
   }
 }

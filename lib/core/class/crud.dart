@@ -6,27 +6,35 @@ import 'package:ecommerce_flutter/core/functions/check_internet.dart';
 import 'package:http/http.dart' as http;
 
 class Crud {
-  Future<Either<StatusRequest, Map>> postRequest(
-      String url, Map<String, dynamic> data) async {
+  Future<Either<StatusRequest, Map>> postRequest(String url, Map data) async {
     try {
-      if (checkInternet()) {
+      if (await checkInternet() == true) {
         // internet yes
-        var response = await http.post(Uri.parse(url), body: data);
+        var response = await http.post(
+            Uri.parse(
+              url,
+            ),
+            body: data);
         if (response.statusCode == 200 || response.statusCode == 201) {
           // success connect server database
-          Map<String, dynamic> responseBody = jsonDecode(response.body);
-          return right(responseBody);
+          Map responseBody = jsonDecode(response.body);
+          print('response body from Crud Class');
+          print(responseBody);
+
+          return Right(responseBody);
         } else {
           // no server database not sucess
-          return left(StatusRequest.serverFailure);
+          print('Srever');
+          return Left(StatusRequest.serverFailure);
         }
       } else {
         // internet no
-        return left(StatusRequest.offlineFailure);
+        print('no internet');
+        return Left(StatusRequest.offlineFailure);
       }
-    } on Exception catch (e) {
-      print('Problem No connetion yaaaaa ${e}');
-      return left(StatusRequest.failure);
+    } catch (_) {
+      print('Problem No connetion yaaaaa');
+      return const Left(StatusRequest.failure);
     }
   }
 }
