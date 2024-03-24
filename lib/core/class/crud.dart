@@ -10,15 +10,11 @@ class Crud {
     try {
       if (await checkInternet() == true) {
         // internet yes
-        var response = await http.post(
-            Uri.parse(
-              url,
-            ),
-            body: data);
+        var response = await http.post(Uri.parse(url), body: data);
         if (response.statusCode == 200 || response.statusCode == 201) {
           // success connect server database
-          Map responseBody = jsonDecode(response.body);
-          print('response body from Crud Class');
+          Map responseBody = json.decode(response.body);
+
           print(responseBody);
 
           return Right(responseBody);
@@ -33,8 +29,7 @@ class Crud {
         return Left(StatusRequest.offlineFailure);
       }
     } catch (_) {
-      print('Problem No connetion yaaaaa');
-      return const Left(StatusRequest.failure);
+      return Left(StatusRequest.RequestException);
     }
   }
 }

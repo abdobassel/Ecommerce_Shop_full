@@ -10,7 +10,7 @@ class SignupData {
       String username, String password, String email, String phone) async {
     var response = await crud.postRequest(AppLinksApi.signup, {
       'username': username,
-      'passord': password,
+      'password': password,
       'email': email,
       'phone': phone,
     });
@@ -19,7 +19,7 @@ class SignupData {
       print('left $l');
       return l;
     }, (r) {
-      //  print('right $r');
+      print('right $r');
       return r;
     });
   }

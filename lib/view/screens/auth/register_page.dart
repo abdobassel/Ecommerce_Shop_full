@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/components/components.dart';
 import 'package:ecommerce_flutter/controller/auth/signup_controller.dart';
+import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
 import 'package:ecommerce_flutter/view/screens/auth/loginscreen.dart';
 import 'package:ecommerce_flutter/view/screens/auth/widgets/separated_widget_row.dart';
 import 'package:ecommerce_flutter/view/screens/auth/widgets/social_auth.dart';
@@ -14,7 +15,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => SignupControllerImplements());
+    Get.put(SignupControllerImplements());
     return Scaffold(
       appBar: DefaultAppBar(
         context: context,
@@ -166,17 +167,18 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     Conditional.single(
                       context: context,
+                      conditionBuilder: (context) =>
+                          controller.statusRequest != StatusRequest.loading,
                       fallbackBuilder: (context) => const Center(
                         child: CircularProgressIndicator(
-                          color: AppColor.gry,
+                          color: AppColor.primary,
                         ),
                       ),
-                      conditionBuilder: (context) => true,
                       widgetBuilder: (context) => DefaultButton(
                           text: 'Sign Up',
                           isUperCase: false,
-                          function: () {
-                            controller.signup();
+                          function: () async {
+                            await controller.signup();
                           },
                           background: AppColor.gry,
                           radius: 30),
