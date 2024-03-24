@@ -1,6 +1,7 @@
 import 'package:ecommerce_flutter/components/components.dart';
 import 'package:ecommerce_flutter/controller/auth/login_controller.dart';
 import 'package:ecommerce_flutter/core/class/app_color.dart';
+import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
 import 'package:ecommerce_flutter/core/functions/validation.dart';
 import 'package:ecommerce_flutter/view/screens/auth/widgets/logo_widget.dart';
 import 'package:ecommerce_flutter/view/screens/auth/widgets/separated_widget_row.dart';
@@ -20,13 +21,12 @@ class LoginScreen extends StatelessWidget {
         title: Text('login'.tr),
         scrolledUnderElevation: 0.0,
       ),
-      body: GetBuilder<LoginControllerImplements>(
-          builder: (loginControllerImplements) {
+      body: GetBuilder<LoginControllerImplements>(builder: (loginController) {
         return SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Form(
-              key: loginControllerImplements.loginFormKey,
+              key: loginController.loginFormKey,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -39,9 +39,9 @@ class LoginScreen extends StatelessWidget {
                           }
                           return null;
                         }*/
-                          return validInput(value!, 2, 10, 'email');
+                          return validInput(value!, 6, 10, 'email');
                         },
-                        controller: loginControllerImplements.emailControler,
+                        controller: loginController.emailControler,
                         labeltext: 'email'.tr,
                         type: TextInputType.emailAddress),
                     const SizedBox(
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                         isPassword: true,
                         sufxBtn: 'view Hide',
                         showPassfunc: () {},
-                        controller: loginControllerImplements.passControler,
+                        controller: loginController.passControler,
                         labeltext: 'password'.tr,
                         type: TextInputType.visiblePassword),
                     const SizedBox(
@@ -67,17 +67,19 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Conditional.single(
                       context: context,
+                      conditionBuilder: (context) =>
+                          loginController.statusRequest !=
+                          StatusRequest.loading,
                       fallbackBuilder: (context) => const Center(
                         child: CircularProgressIndicator(
                           color: AppColor.gry,
                         ),
                       ),
-                      conditionBuilder: (context) => true,
                       widgetBuilder: (context) => DefaultButton(
                           text: 'login'.tr,
                           isUperCase: false,
                           function: () {
-                            loginControllerImplements.login();
+                            loginController.login();
                           },
                           background: AppColor.primary,
                           radius: 30),
@@ -88,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                     InkWell(
                       splashColor: AppColor.gry,
                       onTap: () {
-                        loginControllerImplements.toForgetPassword();
+                        loginController.toForgetPassword();
                       },
                       child: Text('forgetpass'.tr,
                           textAlign: TextAlign.end,
@@ -104,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                       child: InkWell(
                         splashColor: AppColor.gry,
                         onTap: () {
-                          loginControllerImplements.toSignup();
+                          loginController.toSignup();
                         },
                         child: const Text('I Dont Have an Acount ? signup',
                             style: TextStyle(
