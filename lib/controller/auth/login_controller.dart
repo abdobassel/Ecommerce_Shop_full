@@ -51,7 +51,7 @@ class LoginControllerImplements extends LoginController {
               ' ' +
               userData['created_at']); // سيطبع اسم المستخدم
 
-          Get.offNamed(AppRoutes.home);
+          Get.offNamed(AppRoutes.home, arguments: userData);
         } else {
           Get.defaultDialog(
             title: 'Error Signup',

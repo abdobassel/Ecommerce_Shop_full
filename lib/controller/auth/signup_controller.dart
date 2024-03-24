@@ -36,7 +36,7 @@ class SignupControllerImplements extends SignupController {
   // signup data post
   StatusRequest? statusRequest;
 
-  List data = [];
+  Map<String, dynamic> userSignupData = {};
 
   @override
   signup() async {
@@ -50,7 +50,9 @@ class SignupControllerImplements extends SignupController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // data.addAll(response['data']); // save list here for using after if want
-          Get.offNamed(AppRoutes.verfycode_signup);
+          userSignupData = response['data'];
+          print(response['data']['vercode']);
+          Get.offNamed(AppRoutes.verfycode_signup, arguments: userSignupData);
         } else {
           Get.defaultDialog(
             title: 'Error Signup',
