@@ -8,16 +8,19 @@ abstract class VerficodeSignUpController extends GetxController {
 }
 
 class VerficodeSignUpControllerImpl extends VerficodeSignUpController {
+  String? email;
+  late String vercode;
+  @override
+  void onInit() {
+    email = Get.arguments['email'];
+    vercode = Get.arguments['vercode'];
+
+    super.onInit();
+  }
+
   @override
   toSuccessSignup() {
     Get.toNamed(AppRoutes.success_signup);
-  }
-
-  late String codeVer;
-
-  @override
-  void onInit() {
-    super.onInit();
   }
 
   @override

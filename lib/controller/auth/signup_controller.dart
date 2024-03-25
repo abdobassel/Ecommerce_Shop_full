@@ -52,7 +52,10 @@ class SignupControllerImplements extends SignupController {
           // data.addAll(response['data']); // save list here for using after if want
           userSignupData = response['data'];
           print(response['data']['vercode']);
-          Get.offNamed(AppRoutes.verfycode_signup, arguments: userSignupData);
+          Get.offNamed(AppRoutes.verfycode_signup, arguments: {
+            "email": userSignupData['email'],
+            "vercode": userSignupData['vercode'],
+          });
         } else {
           Get.defaultDialog(
             title: 'Error Signup',

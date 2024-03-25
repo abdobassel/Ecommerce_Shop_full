@@ -47,48 +47,59 @@ class ForgetPassword extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Check Email '),
-              SizedBox(
-                height: 20,
-              ),
-              DefaultTextForm(
-                  validate: (value) {
-                    if (value != null) {
-                      if (value.isEmpty) {
-                        return 'Email Is Empty ';
-                      }
-                      return null;
-                    }
-                  },
-                  onchange: (text) {
-                    print(text);
-                  },
-                  controller: forgetPasswordControllerImpl.emailControler,
-                  labeltext: 'email'.tr,
-                  type: TextInputType.emailAddress),
-              const SizedBox(
-                height: 40,
-              ),
-              Conditional.single(
-                context: context,
-                fallbackBuilder: (context) => const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColor.gry,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(
+                    height: 30,
                   ),
-                ),
-                conditionBuilder: (context) => true,
-                widgetBuilder: (context) => DefaultButton(
-                    text: 'check'.tr,
-                    isUperCase: false,
-                    function: () {
-                      forgetPasswordControllerImpl.toVerfiyCode();
-                    },
-                    background: AppColor.gry,
-                    radius: 30),
-              ),
-            ]),
+                  const Center(
+                    child: Text(
+                      'Check Email ',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  DefaultTextForm(
+                      validate: (value) {
+                        if (value != null) {
+                          if (value.isEmpty) {
+                            return 'Email Is Empty ';
+                          }
+                          return null;
+                        }
+                      },
+                      onchange: (text) {
+                        print(text);
+                      },
+                      controller: forgetPasswordControllerImpl.emailControler,
+                      labeltext: 'email'.tr,
+                      type: TextInputType.emailAddress),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Conditional.single(
+                    context: context,
+                    fallbackBuilder: (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColor.gry,
+                      ),
+                    ),
+                    conditionBuilder: (context) => true,
+                    widgetBuilder: (context) => DefaultButton(
+                        text: 'check'.tr,
+                        isUperCase: false,
+                        function: () {
+                          forgetPasswordControllerImpl.toVerfiyCode();
+                        },
+                        background: AppColor.gry,
+                        radius: 30),
+                  ),
+                ]),
           ),
         ),
       ),

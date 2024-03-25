@@ -15,8 +15,7 @@ class VerfyCodeSignup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VerficodeSignUpControllerImpl verficodeSignUpControllerImpl =
-        Get.put(VerficodeSignUpControllerImpl());
+    Get.put(VerficodeSignUpControllerImpl());
     return Scaffold(
       appBar: DefaultAppBar(
         context: context,
@@ -61,16 +60,23 @@ class VerfyCodeSignup extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  OtpTextField(
-                    fieldWidth: 55,
-                    borderRadius: BorderRadius.circular(20),
-                    numberOfFields: 5,
-                    onCodeChanged: (String code) {},
-                    onSubmit: (String vCode) {
-                      verficodeSignUpControllerImpl.toSuccessSignup();
-                    },
-                    showFieldAsBox: true,
-                  ),
+                  GetBuilder<VerficodeSignUpControllerImpl>(
+                      builder: (controller) {
+                    return OtpTextField(
+                      fieldWidth: 55,
+                      borderRadius: BorderRadius.circular(20),
+                      numberOfFields: 5,
+                      onCodeChanged: (String code) {
+                        code = controller.vercode;
+                      },
+                      onSubmit: (String vCode) {
+                        vCode = controller.vercode;
+
+                        controller.toSuccessSignup();
+                      },
+                      showFieldAsBox: true,
+                    );
+                  }),
                   const SizedBox(
                     height: 40,
                   ),
@@ -85,7 +91,9 @@ class VerfyCodeSignup extends StatelessWidget {
                     widgetBuilder: (context) => DefaultButton(
                         text: 'Check',
                         isUperCase: false,
-                        function: () {},
+                        function: () {
+                          VerficodeSignUpControllerImpl().toSuccessSignup();
+                        },
                         background: AppColor.gry,
                         radius: 30),
                   ),
