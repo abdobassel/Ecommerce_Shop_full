@@ -115,14 +115,16 @@ Widget DefaultTextForm({
 }) =>
     TextFormField(
       cursorColor: const Color.fromARGB(255, 39, 8, 8),
-      style:
-          const TextStyle(color: Color.fromARGB(255, 35, 19, 19), fontSize: 20),
+      style: const TextStyle(
+        color: Color.fromARGB(255, 35, 19, 19),
+        fontSize: 20,
+      ),
       onTap: onTap,
       onChanged: onchange,
       obscureText: isPassword,
       onFieldSubmitted: onSubmit,
       validator: validate,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       controller: controller,
       keyboardType: type,
       decoration: InputDecoration(
@@ -138,8 +140,11 @@ Widget DefaultTextForm({
             )),
         suffixText: suffxtext,
         labelStyle: const TextStyle(
-          color: Colors.grey,
-        ),
+            overflow: TextOverflow.clip,
+            color: Colors.grey,
+            fontSize: 18,
+            fontFamily: 'cairo',
+            fontWeight: FontWeight.w600),
         focusedBorder:
             UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
         enabledBorder: UnderlineInputBorder(

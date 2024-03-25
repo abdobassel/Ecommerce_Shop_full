@@ -2,6 +2,7 @@ import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
 import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
 import 'package:ecommerce_flutter/core/functions/handle_response.dart';
 import 'package:ecommerce_flutter/core/localization/change_local.dart';
+import 'package:ecommerce_flutter/core/services/services.dart';
 import 'package:ecommerce_flutter/data/datasource/remote/auth/login_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class LoginControllerImplements extends LoginController {
   late GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   StatusRequest? statusRequest;
   Map<String, dynamic> userData = {}; // user info
-
+  MyServices myservices = Get.find();
   @override
   login() async {
     if (loginFormKey.currentState!.validate()) {
@@ -47,11 +48,28 @@ class LoginControllerImplements extends LoginController {
           // إضافة البيانات المحولة إلى قائمة userData
           userData.addAll(responseData.values);*/
           userData = response['data'];
-          print(userData['username'] +
-              ' ' +
-              userData['created_at']); // سيطبع اسم المستخدم
+          print(userData['username']); // سيطبع اسم المستخدم
 
-          Get.offNamed(AppRoutes.home, arguments: userData);
+          // sharedpref save login for redirect home
+
+          myservices.sharedPreferences.setString('step', '2');
+
+          //save sharedpref user info
+          myservices.sharedPreferences
+              .setString('user_id', response['data']['id']);
+          myservices.sharedPreferences
+              .setString('username', response['data']['username']);
+          myservices.sharedPreferences
+              .setString('email', response['data']['email']);
+          myservices.sharedPreferences
+              .setString('phone', response['data']['phone']);
+
+          Get.offNamed(AppRoutes.home, arguments: {
+            "email": response['data']['email'],
+            "username": response['data']['username'],
+            "user_id": response['data']['user_id'],
+            "phone": response['data']['phone'],
+          });
         } else {
           Get.defaultDialog(
             title: 'Error Signup',

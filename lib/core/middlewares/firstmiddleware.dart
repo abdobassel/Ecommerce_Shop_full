@@ -10,6 +10,9 @@ class FirstMiddleWare extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
+    if (myServices.sharedPreferences.getString('step') == '2') {
+      return const RouteSettings(name: AppRoutes.home);
+    }
     if (myServices.sharedPreferences.getBool('onboard') == true) {
       return const RouteSettings(name: AppRoutes.login);
     }
