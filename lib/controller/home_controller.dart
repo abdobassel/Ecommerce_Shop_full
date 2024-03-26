@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 abstract class HomeController extends GetxController {
   initialData();
-  getCategories();
+  getDataHome();
 }
 
 class HomeControllerImpl extends HomeController {
@@ -16,7 +16,7 @@ class HomeControllerImpl extends HomeController {
   String? username, email, phone, userId;
   @override
   initialData() async {
-    await getCategories();
+    await getDataHome();
     //  username = Get.arguments['username'].toString();
     username = myServices.sharedPreferences.getString('username').toString();
     email = myServices.sharedPreferences.getString('email').toString();
@@ -35,8 +35,9 @@ class HomeControllerImpl extends HomeController {
 
 // get data categories
   List categoriesData = [];
+  List items = [];
   @override
-  getCategories() async {
+  getDataHome() async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await homeData.getData();
@@ -44,11 +45,14 @@ class HomeControllerImpl extends HomeController {
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         categoriesData.addAll(response['categories']);
-        print(categoriesData);
-        print(response);
+        items.addAll(response['items']);
+        //  print(categoriesData);
+        // print(response);
+        print(items);
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
+    update();
   }
 }
