@@ -3,4 +3,8 @@ class AppLinksApi {
 // auth
   static const String signup = "$server/auth/signup.php";
   static const String login = "$server/auth/login.php";
+
+//home _categoreis
+  static const String home = "$server/home.php";
+  static const String allCategories = "$server/categoris/view.php";
 }
