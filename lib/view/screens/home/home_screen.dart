@@ -20,7 +20,6 @@ class MyHomePage extends StatelessWidget {
             height: 15,
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Stack(children: [
               Container(
                 alignment: Alignment.center,
@@ -44,11 +43,11 @@ class MyHomePage extends StatelessWidget {
                   top: -1,
                   right: -25,
                   child: Container(
-                    height: 140,
-                    width: 160,
+                    height: 150,
+                    width: 140,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      color: Color.fromARGB(255, 228, 142, 131),
+                      borderRadius: BorderRadius.circular(80),
+                      color: Color.fromARGB(255, 178, 27, 7),
                     ),
                   )),
             ]),
