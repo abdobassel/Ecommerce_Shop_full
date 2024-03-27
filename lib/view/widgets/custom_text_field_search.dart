@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomSearchField extends StatelessWidget {
-  CustomSearchField({super.key});
-  var searchController = TextEditingController();
+  CustomSearchField(
+      {super.key,
+      this.onPressedIconBar,
+      this.controller,
+      this.onchange,
+      this.onsubmit});
+  final void Function()? onPressedIconBar;
+  TextEditingController? controller;
+  String? Function(String?)? onsubmit;
+  String? Function(String?)? onchange;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,8 +28,9 @@ class CustomSearchField extends StatelessWidget {
         children: [
           Expanded(
             child: DefaultTextForm(
-              onchange: (value) {},
-              controller: searchController,
+              onSubmit: onsubmit,
+              onchange: onchange,
+              controller: controller,
               labeltext: 'Search',
               type: TextInputType.text,
               suffixIcon: Icons.search_rounded,
@@ -34,7 +44,7 @@ class CustomSearchField extends StatelessWidget {
             color: Colors.grey[150],
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: IconButton(
-                onPressed: () {},
+                onPressed: onPressedIconBar,
                 icon: Icon(
                   Icons.notifications_on_outlined,
                   size: 36,
