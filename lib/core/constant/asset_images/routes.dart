@@ -10,6 +10,7 @@ import 'package:ecommerce_flutter/view/screens/auth/verfycode_signup.dart';
 import 'package:ecommerce_flutter/view/screens/auth/verifycode.dart';
 import 'package:ecommerce_flutter/view/screens/home/home_screen.dart';
 import 'package:ecommerce_flutter/view/screens/home/layout.dart';
+import 'package:ecommerce_flutter/view/screens/items_screen.dart';
 import 'package:ecommerce_flutter/view/screens/language/languagescreen.dart';
 import 'package:ecommerce_flutter/view/screens/onboarding.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class AppRoutes {
   static const String verfycode_signup = '/veryficode_signup';
   static const String test = '/test';
   static const String homeLayout = '/layout';
+  static const String itemsscreen = '/items';
 }
 
 // routes => builtin flutter not getx
@@ -74,4 +76,5 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.verfycode_signup, page: () => VerfyCodeSignup()),
   GetPage(name: AppRoutes.test, page: () => TestV()),
   GetPage(name: AppRoutes.homeLayout, page: () => HomeLayout()),
+  GetPage(name: AppRoutes.itemsscreen, page: () => ItemsScreen()),
 ];

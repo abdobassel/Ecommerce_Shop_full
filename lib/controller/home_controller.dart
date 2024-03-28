@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
+import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
 import 'package:ecommerce_flutter/core/functions/handle_response.dart';
 import 'package:ecommerce_flutter/core/services/services.dart';
 import 'package:ecommerce_flutter/data/datasource/remote/home/home_data.dart';
@@ -7,6 +8,7 @@ import 'package:get/get.dart';
 abstract class HomeController extends GetxController {
   initialData();
   getDataHome();
+  gettoItems(List categories, int categorySelected);
 }
 
 class HomeControllerImpl extends HomeController {
@@ -54,5 +56,13 @@ class HomeControllerImpl extends HomeController {
       }
     }
     update();
+  }
+
+  @override
+  gettoItems(categories, categorySelected) {
+    Get.toNamed(AppRoutes.itemsscreen, arguments: {
+      "categories": categories,
+      "category_select": categorySelected
+    });
   }
 }

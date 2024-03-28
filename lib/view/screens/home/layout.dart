@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ecommerce_flutter/controller/layout_controller.dart';
 import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:ecommerce_flutter/view/screens/home/widgets/custom_btm_appbar.dart';
@@ -16,7 +14,7 @@ class HomeLayout extends StatelessWidget {
       return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColor.primary,
-          child: Icon(
+          child: const Icon(
             Icons.shopping_cart,
           ),
           onPressed: () {},
@@ -41,39 +39,6 @@ class HomeLayout extends StatelessWidget {
                         active: controller.currentpage == i ? true : false,
                       );
               })
-              /* CustomBtmAppBar(
-                onpressed: () {
-                  controller.changeScreen(0);
-                },
-                title: 'home',
-                iconData: Icons.home,
-                active: controller.currentpage == 0 ? true : false,
-              ),
-              CustomBtmAppBar(
-                onpressed: () {
-                  controller.changeScreen(1);
-                },
-                title: 'settings',
-                iconData: Icons.settings_applications,
-                active: controller.currentpage == 1 ? true : false,
-              ),
-              Spacer(),
-              CustomBtmAppBar(
-                onpressed: () {
-                  controller.changeScreen(2);
-                },
-                title: 'favorite',
-                iconData: Icons.favorite_rounded,
-                active: controller.currentpage == 2 ? true : false,
-              ),
-              CustomBtmAppBar(
-                onpressed: () {
-                  controller.changeScreen(3);
-                },
-                title: 'profile',
-                iconData: Icons.person_2_outlined,
-                active: controller.currentpage == 3 ? true : false,
-              ),*/
             ],
           ),
         ),
