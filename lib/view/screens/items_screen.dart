@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
 import 'package:ecommerce_flutter/core/functions/translate_function.dart';
 import 'package:flutter/material.dart';
@@ -26,94 +27,100 @@ class ItemsScreen extends StatelessWidget {
                 return Center(child: Lottie.asset(AssetImages.loty));
               },
               widgetBuilder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CustomSearchField(
-                        onPressedIconBar: () {},
-                        onsubmit: (String? value) {},
-                      ),
-                      const SizedBox(height: 10),
-                      const ListCatForItems(),
-                      Expanded(
-                        child: GridView.builder(
-                          itemCount: controller.itemsmodel.length,
-                          shrinkWrap: true,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10.0,
-                            crossAxisSpacing: 10.0,
-                            childAspectRatio: 0.8,
-                          ),
-                          itemBuilder: (context, index) {
-                            final item = controller.itemsmodel[index];
-                            return InkWell(
-                              onTap: () {},
-                              child: Card(
-                                color: Colors.green[100],
-                                child: Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        AssetImages.labtop,
-                                        height: 80,
-                                        fit: BoxFit.fill,
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        translateDynamicWords(
-                                            ar: item.nameAr ?? 'No name',
-                                            en: item.nameEn ?? 'No name'),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        item.descEn ?? 'No desc',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 16),
-                                      ),
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                return controller.itemsmodel.isEmpty
+                    ? Center(
+                        child: Lottie.asset(AssetImages.oops),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            CustomSearchField(
+                              onPressedIconBar: () {},
+                              onsubmit: (String? value) {},
+                            ),
+                            const SizedBox(height: 10),
+                            const ListCatForItems(),
+                            Expanded(
+                              child: GridView.builder(
+                                itemCount: controller.itemsmodel.length,
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10.0,
+                                  crossAxisSpacing: 10.0,
+                                  childAspectRatio: 0.8,
+                                ),
+                                itemBuilder: (context, index) {
+                                  final item = controller.itemsmodel[index];
+                                  return InkWell(
+                                    onTap: () {},
+                                    child: Card(
+                                      color: Colors.green[100],
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            Text(item.price ?? 'No price'),
-                                            Spacer(),
-                                            IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(
-                                                Icons.favorite,
-                                                color: Colors.grey,
+                                            Image.asset(
+                                              AssetImages.labtop,
+                                              height: 80,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            SizedBox(height: 5),
+                                            Text(
+                                              translateDynamicWords(
+                                                  ar: item.nameAr ?? 'No name',
+                                                  en: item.nameEn ?? 'No name'),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(height: 5),
+                                            Text(
+                                              item.descEn ?? 'No desc',
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16),
+                                            ),
+                                            Expanded(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                      item.price ?? 'No price'),
+                                                  Spacer(),
+                                                  IconButton(
+                                                    onPressed: () {},
+                                                    icon: Icon(
+                                                      Icons.favorite,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                );
+                      );
               }),
         );
       },

@@ -4,11 +4,14 @@ import 'package:ecommerce_flutter/core/functions/check_internet.dart';
 import 'package:ecommerce_flutter/core/localization/change_local.dart';
 import 'package:ecommerce_flutter/core/localization/translation.dart';
 import 'package:ecommerce_flutter/core/services/services.dart';
+import 'package:ecommerce_flutter/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await checkInternet(); //print true if internet works
   await initialServices();
 

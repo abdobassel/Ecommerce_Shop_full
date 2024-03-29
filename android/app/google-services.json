@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "177270446318",
+    "project_id": "ecommerce-abohamza",
+    "storage_bucket": "ecommerce-abohamza.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177270446318:android:ce9fd8ba4c45bfc503fbff",
+        "android_client_info": {
+          "package_name": "com.bassel.ecommerce_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATu05bJok_wxQZEL2qqkP3PFSV-5rzKAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
