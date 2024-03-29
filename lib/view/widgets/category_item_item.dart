@@ -2,6 +2,7 @@ import 'package:ecommerce_flutter/controller/home_controller.dart';
 import 'package:ecommerce_flutter/controller/items_controller.dart';
 import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:ecommerce_flutter/core/constant/asset_images/asset_images.dart';
+import 'package:ecommerce_flutter/core/functions/translate_function.dart';
 import 'package:ecommerce_flutter/data/models/categoriesmodel/datum.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,10 @@ class CategoryItmes extends GetView<ItemsControllerImpl> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                categoriesModel.nameAr ?? "No Title",
+                translateDynamicWords(
+                  ar: categoriesModel.nameAr ?? "No Title",
+                  en: categoriesModel.nameEn ?? "No Title",
+                ),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
             ],

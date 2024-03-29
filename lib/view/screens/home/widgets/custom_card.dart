@@ -1,7 +1,9 @@
+import 'package:ecommerce_flutter/controller/home_controller.dart';
 import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CustomCardHome extends StatelessWidget {
+class CustomCardHome extends GetView<HomeControllerImpl> {
   const CustomCardHome(
       {super.key, required this.title, required this.subTitle});
   final String title, subTitle;
@@ -29,7 +31,8 @@ class CustomCardHome extends StatelessWidget {
         ),
         Positioned(
             top: -1,
-            right: -25,
+            right: controller.language == "en" ? -25 : null,
+            left: controller.language == "ar" ? -25 : null,
             child: Container(
               height: 150,
               width: 140,

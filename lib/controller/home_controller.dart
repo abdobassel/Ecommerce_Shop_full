@@ -16,6 +16,7 @@ class HomeControllerImpl extends HomeController {
   HomeData homeData = HomeData(Get.find());
   StatusRequest? statusRequest;
   String? username, email, phone, userId;
+  String? language;
   @override
   initialData() async {
     await getDataHome();
@@ -24,6 +25,7 @@ class HomeControllerImpl extends HomeController {
     email = myServices.sharedPreferences.getString('email').toString();
     userId = myServices.sharedPreferences.getString('user_id').toString();
     phone = myServices.sharedPreferences.getString('phone').toString();
+    language = myServices.sharedPreferences.getString('lang');
   }
 
   // categories

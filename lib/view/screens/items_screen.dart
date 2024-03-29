@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
+import 'package:ecommerce_flutter/core/functions/translate_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:get/get.dart';
@@ -67,7 +68,9 @@ class ItemsScreen extends StatelessWidget {
                                       ),
                                       SizedBox(height: 5),
                                       Text(
-                                        item.nameAr ?? 'No name',
+                                        translateDynamicWords(
+                                            ar: item.nameAr ?? 'No name',
+                                            en: item.nameEn ?? 'No name'),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,

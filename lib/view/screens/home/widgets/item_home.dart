@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:ecommerce_flutter/core/constant/asset_images/asset_images.dart';
+import 'package:ecommerce_flutter/core/functions/translate_function.dart';
 import 'package:ecommerce_flutter/data/models/items_model/items_model.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,9 @@ class Item extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          Text(itemsModel.nameEn ?? "No Title"),
+          Text(translateDynamicWords(
+                  ar: itemsModel.nameAr, en: itemsModel.nameEn) ??
+              "No Title"),
         ],
       ),
     );
