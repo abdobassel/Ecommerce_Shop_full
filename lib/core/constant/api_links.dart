@@ -7,4 +7,5 @@ class AppLinksApi {
 //home _categoreis
   static const String home = "$server/home.php";
   static const String allCategories = "$server/categoris/view.php";
+  static const String itemspage = "$server/items/items.php";
 }

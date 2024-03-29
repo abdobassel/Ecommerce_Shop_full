@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 abstract class HomeController extends GetxController {
   initialData();
   getDataHome();
-  gettoItems(List categories, int categorySelected);
+  gettoItems(List categories, int categorySelected, String catid);
 }
 
 class HomeControllerImpl extends HomeController {
@@ -59,10 +59,11 @@ class HomeControllerImpl extends HomeController {
   }
 
   @override
-  gettoItems(categories, categorySelected) {
+  gettoItems(categories, categorySelected, catid) {
     Get.toNamed(AppRoutes.itemsscreen, arguments: {
       "categories": categories,
-      "category_select": categorySelected
+      "category_select": categorySelected,
+      "cat_id": catid,
     });
   }
 }

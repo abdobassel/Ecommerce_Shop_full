@@ -15,7 +15,8 @@ class CategoryItmes extends GetView<ItemsControllerImpl> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.changeCat(selectedCat); // change active color cat
+        controller.changeCat(
+            selectedCat, categoriesModel.id); // change active color cat
       },
       child: GetBuilder<ItemsControllerImpl>(builder: (context) {
         return Container(

@@ -14,7 +14,8 @@ class Category extends GetView<HomeControllerImpl> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.gettoItems(controller.categoriesData, selectedCat);
+        controller.gettoItems(
+            controller.categoriesData, selectedCat, categoriesModel.id!);
       },
       child: Container(
         decoration: BoxDecoration(

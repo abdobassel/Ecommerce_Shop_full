@@ -8,7 +8,12 @@ class AssetImages {
   static const String onBoard1 = '$assetRoot/delivery.png';
   static const String onBoard2 = '$assetRoot/done.png';
   static const String onBoard3 = '$assetRoot/friendship.png';
+  static const String labtop = '$assetRoot/laptop_coloured.jpg';
+  static const String mobile = '$assetRoot/mobile.jpg';
 
+// lottie animation pics
   static const String loading = '$lottieRoot/loading_funny.json';
   static const String oops = '$lottieRoot/lot3.json';
+  static const String loty = '$lottieRoot/lottei1.json';
+  static const String error404 = '$lottieRoot/lot2.json';
 }

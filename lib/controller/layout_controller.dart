@@ -16,7 +16,6 @@ class LayoutControllerImpl extends LayoutController {
   changeScreen(int index) {
     currentpage = index;
     update();
-    print(index);
   }
 
   List<IconData> icons = [
