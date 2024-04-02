@@ -1,6 +1,8 @@
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
+import 'package:ecommerce_flutter/core/constant/asset_images/routes.dart';
 import 'package:ecommerce_flutter/core/functions/handle_response.dart';
+import 'package:ecommerce_flutter/core/services/services.dart';
 import 'package:ecommerce_flutter/data/datasource/remote/items/items_data.dart';
 import 'package:ecommerce_flutter/data/models/items_model/items_model.dart';
 import 'package:get/get.dart';
@@ -9,12 +11,13 @@ abstract class ItemsController extends GetxController {
   initialData();
   changeCat(int catActive, String categoryID);
   getItemsData(String catId);
+  goToProductDetails(ItemsModel item);
 }
 
 class ItemsControllerImpl extends ItemsController {
   List categories = [];
   int? selectCategory;
-  String? catID;
+  String? catID, userid;
   @override
   void onInit() {
     initialData();
@@ -26,6 +29,7 @@ class ItemsControllerImpl extends ItemsController {
     categories = Get.arguments['categories'];
     selectCategory = Get.arguments['category_select'];
     catID = Get.arguments['cat_id'];
+    userid = Get.arguments['user_id'];
     getItemsData(catID.toString());
   }
 
@@ -37,6 +41,7 @@ class ItemsControllerImpl extends ItemsController {
     update();
   }
 
+  MyServices myServices = Get.find();
   ItemsData itemsData = ItemsData(Get.find());
   StatusRequest? statusRequest;
   List items = [];
@@ -48,7 +53,10 @@ class ItemsControllerImpl extends ItemsController {
     itemsmodel.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await itemsData.getData(catId);
+    var response = await itemsData.getData(
+      catId,
+      myServices.sharedPreferences.getString('user_id')!,
+    );
     statusRequest = handle(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
@@ -61,5 +69,12 @@ class ItemsControllerImpl extends ItemsController {
       }
     }
     update();
+  }
+
+  @override
+  goToProductDetails(item) {
+    Get.toNamed(AppRoutes.productdetails, arguments: {
+      "item": item,
+    });
   }
 }

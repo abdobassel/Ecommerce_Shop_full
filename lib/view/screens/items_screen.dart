@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/controller/fav_controller.dart';
 import 'package:ecommerce_flutter/core/class/app_color.dart';
 import 'package:ecommerce_flutter/core/class/enum_statusrequest.dart';
 import 'package:ecommerce_flutter/core/functions/translate_function.dart';
@@ -11,11 +12,13 @@ import 'package:ecommerce_flutter/view/widgets/list_cat_for_items.dart';
 import 'package:lottie/lottie.dart';
 
 class ItemsScreen extends StatelessWidget {
-  const ItemsScreen({Key? key});
+  ItemsScreen({Key? key});
+  bool active = false;
 
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImpl());
+    FavController controllerFav = Get.put(FavController());
     return GetBuilder<ItemsControllerImpl>(
       builder: (controller) {
         return Scaffold(
@@ -55,8 +58,11 @@ class ItemsScreen extends StatelessWidget {
                                 ),
                                 itemBuilder: (context, index) {
                                   final item = controller.itemsmodel[index];
+                                  controllerFav.isFav[item.id] = item.fav;
                                   return InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      controller.goToProductDetails(item);
+                                    },
                                     child: Card(
                                       color: Colors.green[100],
                                       child: Padding(
@@ -66,10 +72,13 @@ class ItemsScreen extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Image.asset(
-                                              AssetImages.labtop,
-                                              height: 80,
-                                              fit: BoxFit.fill,
+                                            Hero(
+                                              tag: item.id!,
+                                              child: Image.asset(
+                                                AssetImages.mobile,
+                                                height: 80,
+                                                fit: BoxFit.fill,
+                                              ),
                                             ),
                                             SizedBox(height: 5),
                                             Text(
@@ -100,13 +109,46 @@ class ItemsScreen extends StatelessWidget {
                                                   Text(
                                                       item.price ?? 'No price'),
                                                   Spacer(),
-                                                  IconButton(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.favorite,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  ),
+                                                  GetBuilder<FavController>(
+                                                      builder:
+                                                          (controllerfavorite) {
+                                                    return IconButton(
+                                                      onPressed: () {
+                                                        if (controllerfavorite
+                                                                    .isFav[
+                                                                item.id] ==
+                                                            '1') {
+                                                          controllerfavorite
+                                                              .setFav(
+                                                                  item.id, '0');
+                                                          controllerFav
+                                                              .removeFav(
+                                                                  item.id!);
+                                                        } else {
+                                                          controllerfavorite
+                                                              .setFav(
+                                                                  item.id, '1');
+                                                          controllerFav
+                                                              .addFav(item.id!);
+                                                        }
+                                                      },
+                                                      icon: Icon(
+                                                        controllerfavorite
+                                                                        .isFav[
+                                                                    item.id] ==
+                                                                '1'
+                                                            ? Icons.favorite
+                                                            : Icons
+                                                                .favorite_outline_outlined,
+                                                        color: controllerfavorite
+                                                                        .isFav[
+                                                                    item.id] ==
+                                                                '1'
+                                                            ? Colors.red
+                                                            : Colors.grey,
+                                                      ),
+                                                    );
+                                                  }),
                                                 ],
                                               ),
                                             ),

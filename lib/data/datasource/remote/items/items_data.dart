@@ -6,10 +6,9 @@ class ItemsData {
 
   ItemsData(this.crud);
 
-  getData(String id) async {
-    var response = await crud.postRequest(AppLinksApi.itemspage, {
-      "id": id,
-    });
+  getData(String id, String userID) async {
+    var response = await crud
+        .postRequest(AppLinksApi.itemspage, {"id": id, "user_id": userID});
 
     return response.fold((l) {
       print('left $l');

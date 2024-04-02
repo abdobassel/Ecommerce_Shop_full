@@ -13,6 +13,7 @@ class ItemsModel {
   String? catId;
   String? catnameEn;
   String? catnameAr;
+  String? fav;
 
   ItemsModel({
     this.id,
@@ -29,6 +30,7 @@ class ItemsModel {
     this.catId,
     this.catnameEn,
     this.catnameAr,
+    this.fav,
   });
 
   factory ItemsModel.fromJson(Map<String, dynamic> json) => ItemsModel(
@@ -46,6 +48,7 @@ class ItemsModel {
         catId: json['cat_id'] as String?,
         catnameEn: json['catname_en'] as String?,
         catnameAr: json['catname_ar'] as String?,
+        fav: json['fav'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -63,5 +66,6 @@ class ItemsModel {
         'cat_id': catId,
         'catname_en': catnameEn,
         'catname_ar': catnameAr,
+        'fav': fav,
       };
 }

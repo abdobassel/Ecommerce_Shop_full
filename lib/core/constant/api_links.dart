@@ -8,4 +8,8 @@ class AppLinksApi {
   static const String home = "$server/home.php";
   static const String allCategories = "$server/categoris/view.php";
   static const String itemspage = "$server/items/items.php";
+//favorite
+  static const String favAdd = "$server/favorite/add_fav.php";
+
+  static const String favRemove = "$server/favorite/remove_fav.php";
 }
